@@ -7,10 +7,9 @@ import cv2
 
 
 def cartoonize(image):
-    """
-    convert image into cartoon-like image
-    image: input PIL image
-    """
+    
+    #convert image into cartoon-like image
+    #image: input PIL image
 
     output = np.array(image)
     x, y, c = output.shape
@@ -44,21 +43,17 @@ def cartoonize(image):
         output[:, i] = C[i][index]
     output = output.reshape((x, y, c))
     output = cv2.cvtColor(output, cv2.COLOR_HSV2RGB)
-
-    contours, _ = cv2.findContours(edge,
-                                   cv2.RETR_EXTERNAL,
-                                   cv2.CHAIN_APPROX_NONE)
-    
+    contours, _ = cv2.findContours(edge,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE) 
     cv2.drawContours(output, contours, -1, 0, thickness=1)
     return output
 
-
 def update_C(C, hist):
-    """
-    update centroids until they don't change
-    """
+    
+    #update centroids until they don't change
+    
     while True:
         groups = defaultdict(list)
+
         #assign pixel values
         for i in range(len(hist)):
             if hist[i] == 0:
@@ -77,11 +72,10 @@ def update_C(C, hist):
         C = new_C
     return C, groups
 
-
 def k_histogram(hist):
-    """
-    choose the best K for k-means and get the centroids
-    """
+    
+    #choose the best K for k-means and get the centroids
+    
     alpha = 0.001              # p-value threshold for normaltest
     N = 80                      # minimun group size for normaltest
     C = np.array([128])
@@ -126,16 +120,15 @@ def k_histogram(hist):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('input', help='input image')
-    parser.add_argument('output', help='output cartoonized image')
+    parser.add_argument('real', help='input image')
+    parser.add_argument('cartoonized', help='output cartoonized image')
 
     args = parser.parse_args()
 
-    # image = Image.open(args.input)
-    image = cv2.imread(args.input)
+    image = cv2.imread(args.real)
     start_time = time.time()
     output = cartoonize(image)
     end_time = time.time()
     t = end_time-start_time
     print('time: {0}s'.format(t))
-    cv2.imwrite(args.output, output)
+    cv2.imwrite(args.cartoonized, output)
