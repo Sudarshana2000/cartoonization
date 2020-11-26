@@ -14,7 +14,7 @@ scipy
 
 ## Real Image
 
-![Real image](images/real/Mr Bean.jpg)
+![Real image](images/real/Mr.Bean.jpg)
 
 ## Cartoonized Image
 
