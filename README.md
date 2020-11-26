@@ -14,6 +14,6 @@ scipy
 
 ## Sample
 
-![Real image](./images/real/Mr. Bean.jpg)
+[Real image](images/real/Mr. Bean.jpg)
 
-!Cartoonized image](./images/cartoonized/Mr.Bean.jpg)
+[Cartoonized image](images/cartoonized/Mr.Bean.jpg)
