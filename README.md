@@ -12,8 +12,10 @@ numpy
 scipy
 ```
 
-## Sample
+## Real Image
 
 ![Real image](images/real/Mr Bean.jpg)
+
+## Cartoonized Image
 
 ![Cartoonized image](images/cartoonized/Mr.Bean.jpg)
